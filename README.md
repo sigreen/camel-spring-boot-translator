@@ -141,13 +141,4 @@ curl a72d5cbca16194294b2036694bdba160-1454608839.us-east-1.elb.amazonaws.com/cam
 {
   "translatedPhrase": "ivinggay ouryay egacylay applicationsyay anyay apiyay aceliftfay ithway ongkay "
 }
-
-
-
-
-
-You can build this example using
-
-```
-    mvn package
 ```
