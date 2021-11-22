@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: camel-spring-boot-translator
+  name: camel-spring-boot-translator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: camel-spring-boot-translator
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: camel-spring-boot-translator
+    spec:
+      containers:
+      - image: public.ecr.aws/b9p7h9h8/pig-latin-translator:1.0.0
+        name: camel-spring-boot-translator
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: camel-spring-boot-translator
+  name: camel-spring-boot-translator
+spec:
+  type: LoadBalancer
+  selector:
+    app: camel-spring-boot-translator
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+status:
+  loadBalancer: {}
