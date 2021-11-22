@@ -102,6 +102,9 @@ buildNumber.properties
 *.tfstate
 *.tfstate.*
 
+# kubeconfig files
+kubeconfig_*
+
 # Crash log files
 crash.log
 
