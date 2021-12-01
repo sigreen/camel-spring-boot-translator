@@ -9,7 +9,7 @@
     <restConfiguration apiContextPath="/api-doc" bindingMode="off" component="servlet" contextPath="/camel" enableCORS="true" scheme="http">
       <dataFormatProperty key="prettyPrint" value="true" />
       <apiProperty key="host" value="" />
-      <apiProperty key="api.version" value="1.0.0" />
+      <apiProperty key="api.version" value="2.0.0" />
       <apiProperty key="api.title" value="Pig Latin Translator" />
       <apiProperty key="api.description" value="Camel Rest Example with Swagger that provides a Pig Latin translator service" />
       <apiProperty key="api.contact.name" value="Simon Green" />
@@ -25,17 +25,42 @@
         <responseMessage code="500" message="Translation Failed" />
         <to uri="direct:translate" />
       </put>
+      <!--post uri="/">
+        <description>Emulate Ansible async translation of the phrase</description>
+        <param name="body" type="body" description="The english phrase to translate" required="true" />
+        <responseMessage code="201" message="Successful Translation" />
+        <responseMessage code="500" message="Translation Failed" />
+        <to uri="direct:translate" />
+      </post-->
     </rest>
 
     <route id="translate">
       <from uri="direct:translate" />
       <convertBodyTo type="java.lang.String" charset="ISO-8859-1" />
       <transform>
-        <jsonpath resultType="java.lang.String">$.phrase</jsonpath>
+        <simple>${body.replaceAll('\\\"', '\"')}</simple>
+      </transform>
+      <transform>
+        <simple>${body.replaceAll('\"\{"','\{\"')}</simple>
+      </transform>
+      <transform>
+        <simple>${body.replaceAll('\"\}\"\}','\"\}\}')}</simple>
+      </transform>
+
+      <transform>
+        <jsonpath resultType="java.lang.String">$..extra_vars.message</jsonpath>
       </transform>
       <transform>
         <method ref="sampleBean" method="translate" />
       </transform>
+      <!--choice>
+      <when>
+        <simple>${header.CamelHttpMethod} == 'POST'</simple>
+        <setHeader name="Exchange.HTTP_RESPONSE_CODE">
+          <constant>201</constant>
+      </setHeader>
+      </when>
+    </choice-->
     </route>
   </camelContext>
 

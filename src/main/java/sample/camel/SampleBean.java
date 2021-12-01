@@ -23,7 +23,7 @@ public class SampleBean {
             result += " ";
         }
 
-        return "{\"translatedPhrase\":\"" + result + "\"}";
+        return "{\"response.stdout\": \"" + result + "\"}";
     }
 
     // -----------------------------------------------------------------

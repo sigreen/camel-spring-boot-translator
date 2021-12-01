@@ -71,7 +71,7 @@ Default output format [None]: json
 2. Via the CLI, run terraform.  This will take roughly 7-10 minutes:
 
 ```
-cd src/tf-provision
+cd src/tf-provision-eks
 terraform init
 terraform plan # verify terraform can connect to AWS and create EKS cluster
 terraform apply # provision cluster on EKS.  Accept apply by typing "yes"
@@ -86,7 +86,7 @@ kubectl get all
 
 4.  Via the EC2 management web console, create a new ECR public repo called `pig-latin-translator`.
 
-5. Via the CLI (/camel-spring-boot-translator directory), running the following commands to build the Docker image locally:
+5. Via the CLI (`/camel-spring-boot-translator` directory), running the following commands to build the Docker image locally:
 
 ```bash
 mvn clean spring-boot:build-image
@@ -141,4 +141,12 @@ curl a72d5cbca16194294b2036694bdba160-1454608839.us-east-1.elb.amazonaws.com/cam
 {
   "translatedPhrase": "ivinggay ouryay egacylay applicationsyay anyay apiyay aceliftfay ithway ongkay "
 }
+```
+
+13. To tear down the AWS environment, run the following Terraform commands
+
+```
+cd src/tf-provision-eks
+terraform refresh
+terraform destroy
 ```
