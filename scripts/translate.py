@@ -48,6 +48,7 @@ def translate(message):
 requests.packages.urllib3.disable_warnings() 
 
 url = f'http://automation.kong-sales-engineering.com/camel/translate'
+#url = f'http://localhost:8080/camel/translate'
 print('Using ' + url + ' to translate request...')
 print('Here we go!\n')
 

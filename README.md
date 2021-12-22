@@ -37,8 +37,8 @@ Using Insomnia, import the Swagger spec using the following url:
 
 You can test the transformation using any phrase you like in the body:
 
-```
-     {'phrase':'Giving Your Legacy Applications an API Facelift with Kong'}
+```json
+{"extra_vars": "{\"message\": \"Giving Your Legacy Applications an API Facelift with Kong\"}"}
 ```
 
 Where you can find information about the services and its state.
@@ -132,14 +132,14 @@ curl a72d5cbca16194294b2036694bdba160-1454608839.us-east-1.elb.amazonaws.com/cam
 11.  You can import the above URL into Insomnia and test the endpoint using the Swagger.  Try the following body payload:
 
 ```json
-{"phrase": "Giving Your Legacy Applications an API Facelift with Kong"}
+{"extra_vars": "{\"message\": \"Giving Your Legacy Applications an API Facelift with Kong\"}"}
 ```
 
 12.  If the request is successful, you should receive the following response:
 
 ```json
 {
-  "translatedPhrase": "ivinggay ouryay egacylay applicationsyay anyay apiyay aceliftfay ithway ongkay "
+	"response.stdout": "ivinggay ouryay egacylay applicationsyay anyay apiyay aceliftfay ithway ongkay "
 }
 ```
 

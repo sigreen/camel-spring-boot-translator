@@ -25,13 +25,6 @@
         <responseMessage code="500" message="Translation Failed" />
         <to uri="direct:translate" />
       </put>
-      <!--post uri="/">
-        <description>Emulate Ansible async translation of the phrase</description>
-        <param name="body" type="body" description="The english phrase to translate" required="true" />
-        <responseMessage code="201" message="Successful Translation" />
-        <responseMessage code="500" message="Translation Failed" />
-        <to uri="direct:translate" />
-      </post-->
     </rest>
 
     <route id="translate">
@@ -53,15 +46,6 @@
       <transform>
         <method ref="sampleBean" method="translate" />
       </transform>
-      <!--choice>
-      <when>
-        <simple>${header.CamelHttpMethod} == 'POST'</simple>
-        <setHeader name="Exchange.HTTP_RESPONSE_CODE">
-          <constant>201</constant>
-      </setHeader>
-      </when>
-    </choice-->
     </route>
   </camelContext>
-
 </beans>
